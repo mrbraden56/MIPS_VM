@@ -1,0 +1,1 @@
+/Users/e191267/Personal/BWS/serverless/serverless/target/debug/serverless: /Users/e191267/Personal/BWS/serverless/serverless/src/main.rs /Users/e191267/Personal/BWS/serverless/serverless/src/opcodes.rs

@@ -1,0 +1,49 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'serverless'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=serverless",
+                    "--package=serverless"
+                ],
+                "filter": {
+                    "name": "serverless",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/target/debug/serverless",
+            "sourceLanguages": ["rust"],
+            "sourceMap": {
+                "/rustc/*": "${env:HOME}/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust"
+            }
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'serverless'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=serverless",
+                    "--package=serverless"
+                ],
+                "filter": {
+                    "name": "serverless",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/target/debug/deps/serverless-*",
+            "sourceLanguages": ["rust"]
+        }
+    ]
+}
