@@ -44,10 +44,11 @@ pub struct Mips {
 }
 
 fn _instruction_type(value: &str) -> InstructionType {
-    if value == "addi" {
-        return InstructionType::I;
-    } else {
-        return InstructionType::I;
+    match value {
+        "addi" | "addiu" | "andi" | "ori" | "slti" | "sltiu" | "xori" => InstructionType::I,
+        "add" | "addu" | "sub" | "subu" | "and" | "or" | "xor" | "nor" | "slt" | "sltu" => InstructionType::R,
+        "j" | "jal" => InstructionType::J,
+        _ => panic!("Unknown instruction type for opcode: {}", value)
     }
 }
 
@@ -64,13 +65,19 @@ fn _encode(value: &str) -> i32 {
 pub fn run(assembly: &str, mips: &mut Mips) -> () {
     let instructions: Vec<&str> = assembly.split_whitespace().collect();
     match _instruction_type(instructions[0]) {
-        InstructionType::R => {}
         InstructionType::I => {
             let opcode = instructions[0];
-            let rs = _encode(instructions[1]);
-            let rt = _encode(instructions[2]);
+            let rt = _encode(instructions[1]);
+            let rs = _encode(instructions[2]);
             let iv = _encode(instructions[3]);
             opcodes::execute_i_type(opcode, rs, rt, iv, mips)
+        }
+        InstructionType::R => {
+            let opcode = instructions[0];
+            let rd = _encode(instructions[1]);
+            let rs = _encode(instructions[2]);
+            let rt = _encode(instructions[3]);
+            opcodes::execute_r_type(opcode, rd, rs, rt, mips)
         }
         InstructionType::J => {}
     }

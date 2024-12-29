@@ -7,6 +7,7 @@ fn main() {
         memory: [0; 65536],
     };
 
-    //run("addi $8, $0, 3", &mut mips);
-    run("addiu $9, $8, 10", &mut mips); // 5 + 10 = 15
+    run("addi $8, $0, 5", &mut mips);
+    run("addi $9, $0, 11", &mut mips);
+    run("add $10, $8, 9", &mut mips);
 }
