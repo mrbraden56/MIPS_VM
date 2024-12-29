@@ -3,7 +3,6 @@ mod opcodes;
 enum InstructionType {
     R,
     I,
-    J,
 }
 
 enum Register {
@@ -47,7 +46,6 @@ fn _instruction_type(value: &str) -> InstructionType {
     match value {
         "addi" | "addiu" | "andi" | "ori" | "slti" | "sltiu" | "xori" => InstructionType::I,
         "add" | "addu" | "sub" | "subu" | "and" | "or" | "xor" | "nor" | "slt" | "sltu" => InstructionType::R,
-        "j" | "jal" => InstructionType::J,
         _ => panic!("Unknown instruction type for opcode: {}", value)
     }
 }
@@ -79,6 +77,5 @@ pub fn run(assembly: &str, mips: &mut Mips) -> () {
             let rt = _encode(instructions[3]);
             opcodes::execute_r_type(opcode, rd, rs, rt, mips)
         }
-        InstructionType::J => {}
     }
 }

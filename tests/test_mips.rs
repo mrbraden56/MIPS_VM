@@ -151,13 +151,3 @@ fn test_combined_r_and_i_instructions() {
 
     println!("Combined R-type and I-type instructions test passed!");
 }
-
-#[test]
-fn test_all_j_type_instructions() {
-    let mut mips = Mips {
-        registers: [0; 32],
-        memory: [0; 65536],
-    };
-
-    assert_eq!(1, 1, "temp");
-}
